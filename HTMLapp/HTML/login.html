@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/root.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+ <form name="login" class="login" method="POST" action="./opservations.html">
+     <img src="../Images/Icon.png" class="login__icon" alt="Bs-icon.png">
+     <label class="login__label" for ="login">Prijavi se!</label>
+     <div>
+     <input required class="login__email login__input" type="email" placeholder="Elektronska pošta">
+     <input required class="login__password login__input" type="password" placeholder="Šifra">
+     <div class="login__rememberMe">
+       <input name="remember" id="remember" type="checkbox" checked>
+       <label for="remember">Zapamti me!</label>
+    </div>
+</div>
+     <button class="login__loginBtn primaryBtn" type="submit"><a class="login__link" href="./opservations.html">PRIJAVI SE</a></button>
+     <button class="login__forgottenBtn"><a class="login__link tertiaryBtn" href="./changeEmail.html">Zaboravili ste lozinku?</a></button>
+ </form>
+<script src="../JS/changeEmail.js"></script>
+</body>
+</html>

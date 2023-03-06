@@ -1,0 +1,115 @@
+:root{
+    --lightGray:#F4F4F4;
+    --textGray:#505759;
+    --blue:#53adb9;
+    --altBlue:#008888;
+    --altBlueDark:#3c818a;
+    --blueVariant:#50BBC7;
+    --line:#CED4DA;
+    --btnText:#505759;
+    --black:#000000;
+    --white:#ffffff;
+    --blackish:#231F20;
+    --online:#00cf00;
+    --offline:#fb0101;
+    --secondNav:#dee0e2;
+}
+:is(.login__input,.email__input,.main__input,.zahtev__input):hover{
+    border:1px solid var(--blue);
+}
+:is(.login__input,.email__input,.main__input,.zahtev__input):focus{
+    outline:1px solid var(--blue);
+    }
+    input[type=checkbox] {
+        accent-color:var(--altBlue);
+    }
+    input[type=checkbox]:hover {
+        accent-color:var(--altBlue);
+        box-shadow:0px 5px 20px var(--blueVariant);
+      }
+      input[type=checkbox]:focus,
+      input[type=checkbox]:active{
+        accent-color:var(--altBlueDark);
+        box-shadow:0px 5px 20px var(--blueVariant);
+      }
+      input[type=checkbox]:disabled{
+          opacity:0.5;
+      }
+.primaryBtn{
+    background-color:var(--blue);
+    border:none;
+    cursor:pointer;
+    color:var(--btnText);
+    border-radius:4px;
+    font-size:12px;
+    transition: 0.2s all;
+}
+.primaryBtn:hover,
+.primaryBtn:focus{
+    background-color:var(--blueVariant);
+}
+.primaryBtn:focus{
+outline:var(--btnText);
+}
+.tertiaryBtn:hover{
+    color:var(--blue);
+}
+.tertiaryBtn:focus{
+    outline:var(--blue);
+    /* background-color:var(--line); */
+}
+.currentPage{
+    color:var(--blueVariant);
+}
+.nav__link-button{
+    border:none;
+    background-color:transparent;
+    cursor:pointer;
+}
+.nav__group1{
+    display:flex;
+}
+.nav__user{
+    margin-right:30px;
+}
+.nav__second{
+    display:none;
+    flex-direction:column;
+    background-color:var(--secondNav);
+    position:absolute;
+    padding:4px 6px;
+    bottom:-30%;
+}
+.nav__second::before{
+    content:"";
+    position:absolute;
+    top:-5px;
+    left:50%;
+    clip-path:polygon(0 50%,50% 0,100% 50%);
+    background-color:var(--secondNav);
+    height:10px;
+    width:10px;
+    z-index:100;
+}
+.footer{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:50px;
+    background-color:var(--white);
+    color:var(--blueVariant);
+    margin-top:26px;
+    /* box-shadow:1px -2px 6px  rgba(0,0,0,0.16); */
+}
+.online{
+    background-color:var(--online);
+    width:18px;
+    height:18px;
+    border-radius:20px;
+}
+.offline{
+    background-color:var(--offline);
+    width:18px;
+    height:18px;
+    border-radius:20px;
+}
