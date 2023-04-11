@@ -18,10 +18,10 @@
     --secondNav:#dee0e2;
     --tableTxt:#000000;
 }
-:is(.login__input,.email__input,.main__input,.zahtev__input):hover{
+:is(.login__input, .email__input, .main__input, .zahtev__input):hover{
     border:1px solid var(--blue);
 }
-:is(.login__input,.email__input,.main__input,.zahtev__input):focus{
+:is(.login__input, .email__input, .main__input, .zahtev__input):focus{
     outline:1px solid var(--blue);
     }
     input[type=checkbox] {
