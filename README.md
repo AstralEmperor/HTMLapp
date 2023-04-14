@@ -1,4 +1,5 @@
 # Web application for display and posting of Pictures
+
 ## Introduction:
 An application that started as Internship on BS-Computer private firm, which was further developed by me with added functionality.
 This app was made in VScode IDE and tested using Live Server extension. Made for further practice of JS (fetch API, While method etc).
