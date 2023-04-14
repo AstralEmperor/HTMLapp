@@ -216,7 +216,6 @@ function changePageNum(){
                 numCont[i].removeChild(numCont[i].lastChild);
             }
         }
-    
     }
 }
 changePageNum();
