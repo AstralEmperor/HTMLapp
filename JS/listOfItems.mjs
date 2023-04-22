@@ -177,30 +177,32 @@ function changeImage3(){
 
 
 
-// function displayPage(numPerPage,arrayOfPosts,currentNumPages){
-//     const start = (currentNumPages - 1) * numPerPage;
-//     const end = start + numPerPage;
-//     const pageElements = arrayOfPosts.slice(start,end);
-//     pageElements.forEach(element => {
-//         container.appendChild(element);
-//     })
-// }
+
 // function that checks the number of Elements(posts in this case),and if theres more then 'numPerPage',adds new Pagination Number that is cloned from previously added one in HTML. Or removes if theres less elements.
 //Also changes the current and total number of elements
 function changePageNum(){
-    let arrayOfPosts = Array.from(container.children);
-    const arrayOfitems = [...arrayOfPosts].filter(item => item.classList.contains('main__singleImgContainer'));
+    let arrayOfitems = Array.from(container.children);
+    const arrayOfPosts = [...arrayOfitems].filter(item => item.classList.contains('main__singleImgContainer'));
     const numCont = document.querySelectorAll('.main__pagesNumCont');
     const pageNum = document.querySelector('.main__viewPageNum');
     const totalElementsNum = document.querySelectorAll('.main__pageItemNum');
     const numPerPage = 30;
-    const totalPages = Math.ceil(arrayOfitems.length/numPerPage);
+    const totalPages = Math.ceil(arrayOfPosts.length/numPerPage);
     // writes current page element numbers and total number of elements
     //check the length of the array of elements called with SelectorAll(2 containers have page numbers) and then check their children length.
     for(let i = 0; i < numCont.length; i++){
         const currentNumPages = numCont[i].children.length;
+        const start = (currentNumPages - 1) * numPerPage;
+        const end = start + numPerPage;
+        const pageElements = arrayOfPosts.slice(start,end);
+
         for(element of totalElementsNum){
-            element.textContent = "Prikaz 1-" + numPerPage + " od " + arrayOfitems.length + " proizvoda";
+            if(totalElementsNum.length - 1 < end){
+                element.textContent = "Prikaz " + start + "-" + arrayOfPosts.length + " od " + arrayOfPosts.length + " proizvoda";
+            }
+            else if(totalElementsNum.length - 1 > end){
+                element.textContent = "Prikaz " + start + "-" + end + " od " + arrayOfPosts.length + " proizvoda";
+            }
         }
         //if there is more elements then current pages can fit, clone the last number and add + 1 to its textContent value
         if(currentNumPages < totalPages){
@@ -214,6 +216,7 @@ function changePageNum(){
         }else if (currentNumPages > totalPages && totalPages >= 1){
             while(numCont[i].children.length > totalPages){
                 numCont[i].removeChild(numCont[i].lastChild);
+                displayPage(numPerPage,arrayOfPosts,currentNumPages);
             }
         }
     }
