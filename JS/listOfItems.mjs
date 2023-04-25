@@ -14,6 +14,7 @@ function createListItems(){
     for(i = 0; i < number; i++){
         listTemplate();
         deleteListItem();
+       
     }
 }
 createListItems();
@@ -175,32 +176,48 @@ function changeImage3(){
 }
 }
 
-
-
+function overFlow(start,end,arrayOfPosts){
+    // for(let i = 0; i < container.length; i++){
+        arrayOfPosts.forEach((element,key) => {
+            if(start <= key && end >= key){
+                element.display = 'flex';
+                console.log('gut');
+            }else{
+                element.display = "none";
+                console.log('nein');
+            }
+        })
+ }
 
 // function that checks the number of Elements(posts in this case),and if theres more then 'numPerPage',adds new Pagination Number that is cloned from previously added one in HTML. Or removes if theres less elements.
 //Also changes the current and total number of elements
 function changePageNum(){
+    const numPerPage = 30;
+    let currentPage = 1;
     let arrayOfitems = Array.from(container.children);
     const arrayOfPosts = [...arrayOfitems].filter(item => item.classList.contains('main__singleImgContainer'));
     const numCont = document.querySelectorAll('.main__pagesNumCont');
     const pageNum = document.querySelector('.main__viewPageNum');
     const totalElementsNum = document.querySelectorAll('.main__pageItemNum');
-    const numPerPage = 30;
     const totalPages = Math.ceil(arrayOfPosts.length/numPerPage);
+
+    const start = (currentPage - 1) * numPerPage;
+    const end = start + numPerPage;
+    const pageElements = arrayOfPosts.slice(start,end);
+
+    overFlow(start,end,arrayOfPosts);
     // writes current page element numbers and total number of elements
     //check the length of the array of elements called with SelectorAll(2 containers have page numbers) and then check their children length.
     for(let i = 0; i < numCont.length; i++){
         const currentNumPages = numCont[i].children.length;
-        const start = (currentNumPages - 1) * numPerPage;
-        const end = start + numPerPage;
-        const pageElements = arrayOfPosts.slice(start,end);
 
         for(element of totalElementsNum){
-            if(totalElementsNum.length - 1 < end){
-                element.textContent = "Prikaz " + start + "-" + arrayOfPosts.length + " od " + arrayOfPosts.length + " proizvoda";
+            if(arrayOfPosts.length - 1 < numPerPage && arrayOfPosts.length - 1 < end){
+                // console.log('more than');
+                element.textContent = "Prikaz " + start + "-" + pageElements.length + " od " + arrayOfPosts.length + " proizvoda";
             }
-            else if(totalElementsNum.length - 1 > end){
+            else if(arrayOfPosts.length - 1 >= numPerPage && arrayOfPosts.length - 1 >= end){
+                // console.log('less than');
                 element.textContent = "Prikaz " + start + "-" + end + " od " + arrayOfPosts.length + " proizvoda";
             }
         }
@@ -220,7 +237,7 @@ function changePageNum(){
             }
         }
     }
-}
+ }
 changePageNum();
 
 // On click of button " + " add new Element calling createListItem(), and check if pagination is neccesery with changePageNum();
@@ -250,55 +267,55 @@ function deleteListItem(){
 deleteListItem();
 
     // viewItemNum.innerHTML = "Prikaz"+ arrayOfPosts[0] + "-" + numberOfItems-1 + numberOfItems + "proizvoda";
-    const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
-    const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
-    const mainContainer = document.querySelector('main__imagesContainer');
+//     const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
+//     const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
+//     const mainContainer = document.querySelector('main__imagesContainer');
 
-    // const slide = (currentSlide,targetSlide) =>{
+//     // const slide = (currentSlide,targetSlide) =>{
      
-    // }
-    const pageNum = (currentPage,targetPage) =>{
-        currentPage.classList.remove('current-slideNumber');
-        targetPage.classList.add('current-slideNumber');
-    }
-   //DISABLING BTMS
-    const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn)=>{
-        if(targetIndex === 0 ){
-            pagePrevBtn.classList.add('disabled');
-            pageNextBtn.classList.remove('disabled');
-        }else if(targetIndex === numCont - 1 ){
-            pagePrevBtn.classList.remove('disabled');
-            pageNextBtn.classList.add('disabled');
-        }else{
-            pagePrevBtn.classList.remove('disabled');
-            pageNextBtn.classList.remove('disabled');
-        }
-    }
-    //CHANGING PAGE WITH BUTTONS
-function changingPage(){
-    pagePrevBtn.forEach(pagePrevBtn => {
-        pagePrevBtn.addEventListener('click', () =>{
-            // const currentSlide =  document.querySelector('current-slideNumber');
-            // const prevSlide = currentSlide.previousElementSibling;
-            const currentPage = document.querySelector('.current-slideNumber');
-            const prevPage = currentPage.previousElementSibling;
+//     // }
+//     const pageNum = (currentPage,targetPage) =>{
+//         currentPage.classList.remove('current-slideNumber');
+//         targetPage.classList.add('current-slideNumber');
+//     }
+//    //DISABLING BTMS
+//     const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn)=>{
+//         if(targetIndex === 0 ){
+//             pagePrevBtn.classList.add('disabled');
+//             pageNextBtn.classList.remove('disabled');
+//         }else if(targetIndex === numCont - 1 ){
+//             pagePrevBtn.classList.remove('disabled');
+//             pageNextBtn.classList.add('disabled');
+//         }else{
+//             pagePrevBtn.classList.remove('disabled');
+//             pageNextBtn.classList.remove('disabled');
+//         }
+//     }
+//     //CHANGING PAGE WITH BUTTONS
+// function changingPage(){
+//     pagePrevBtn.forEach(pagePrevBtn => {
+//         pagePrevBtn.addEventListener('click', () =>{
+//             // const currentSlide =  document.querySelector('current-slideNumber');
+//             // const prevSlide = currentSlide.previousElementSibling;
+//             const currentPage = document.querySelector('.current-slideNumber');
+//             const prevPage = currentPage.previousElementSibling;
 
-            // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
-            pageNum(currentPage, prevPage);
-            // disabledBtn(prevIndex,pagePrevBtn);
-        })
-    })
-    pageNextBtn.forEach(pageNextBtn =>{
-        pageNextBtn.addEventListener('click', () =>{
-            const currentPage = document.querySelector('.current-slideNumber');
-            const nextPage = currentPage.nextElementSibling;
-            // const currentSlide = document.querySelector('current-slideNumber');
-            // const nextSlide = currentSlide.nextElementSibling;
+//             // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
+//             pageNum(currentPage, prevPage);
+//             // disabledBtn(prevIndex,pagePrevBtn);
+//         })
+//     })
+//     pageNextBtn.forEach(pageNextBtn =>{
+//         pageNextBtn.addEventListener('click', () =>{
+//             const currentPage = document.querySelector('.current-slideNumber');
+//             const nextPage = currentPage.nextElementSibling;
+//             // const currentSlide = document.querySelector('current-slideNumber');
+//             // const nextSlide = currentSlide.nextElementSibling;
 
-            // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
-            pageNum(currentPage, nextPage);
-            // disabledBtn(nextIndex, pageNextBtn);
-        });
-    })
- }
-changingPage()
+//             // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
+//             pageNum(currentPage, nextPage);
+//             // disabledBtn(nextIndex, pageNextBtn);
+//         });
+//     })
+//  }
+// changingPage()
