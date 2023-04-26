@@ -176,51 +176,118 @@ function changeImage3(){
 }
 }
 
+const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
+    const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
+    const mainContainer = document.querySelector('main__imagesContainer');
+
+    // const slide = (currentSlide,targetSlide) =>{
+     
+    // }
+    const pageNum = (currentPage,targetPage) =>{
+        currentPage.classList.remove('current-slideNumber');
+        targetPage.classList.add('current-slideNumber');
+    }
+   //DISABLING BTMS
+    const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn)=>{
+        if(targetIndex === 0 ){
+            pagePrevBtn.classList.add('disabled');
+            pageNextBtn.classList.remove('disabled');
+        }else if(targetIndex === numCont - 1 ){
+            pagePrevBtn.classList.remove('disabled');
+            pageNextBtn.classList.add('disabled');
+        }else{
+            pagePrevBtn.classList.remove('disabled');
+            pageNextBtn.classList.remove('disabled');
+        }
+    }
+    //CHANGING PAGE WITH BUTTONS
+    let currentPageNum = 1;
+function changingPage(){
+    pagePrevBtn.forEach(pagePrevBtn => {
+        pagePrevBtn.addEventListener('click', () =>{
+            // const currentSlide =  document.querySelector('current-slideNumber');
+            // const prevSlide = currentSlide.previousElementSibling;
+            const currentPage = document.querySelector('.current-slideNumber');
+            const prevPage = currentPage.previousElementSibling;
+            currentPageNum = currentPageNum - 1;
+            // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
+            pageNum(currentPage, prevPage);
+            changePageNum();
+            overFlow();
+            displayText();
+            // disabledBtn(prevIndex,pagePrevBtn);
+        })
+    })
+    pageNextBtn.forEach(pageNextBtn =>{
+        pageNextBtn.addEventListener('click', () =>{
+            const currentPage = document.querySelector('.current-slideNumber');
+            const nextPage = currentPage.nextElementSibling;
+            currentPageNum = currentPageNum + 1 ;
+            // const currentSlide = document.querySelector('current-slideNumber');
+            // const nextSlide = currentSlide.nextElementSibling;
+
+            // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
+            pageNum(currentPage, nextPage);
+            changePageNum();
+            overFlow();
+            displayText();
+            // disabledBtn(nextIndex, pageNextBtn);
+        });
+    })
+    return currentPageNum;
+ }
+ 
 function overFlow(start,end,arrayOfPosts){
     // for(let i = 0; i < container.length; i++){
-        arrayOfPosts.forEach((element,key) => {
-            if(start <= key && end >= key){
-                element.display = 'flex';
+            if(start <= arrayOfPosts.length && end >= arrayOfPosts.length){
+                singleContainer.style.display = 'flex';
                 console.log('gut');
             }else{
-                element.display = "none";
+                singleContainer.style.display = "none";
                 console.log('nein');
             }
-        })
- }
+        }
 
+        changingPage(currentPageNum);
 // function that checks the number of Elements(posts in this case),and if theres more then 'numPerPage',adds new Pagination Number that is cloned from previously added one in HTML. Or removes if theres less elements.
 //Also changes the current and total number of elements
+function displayText(pageElements,arrayOfPosts,start,end,numPerPage){
+    const totalElementsNum = document.querySelectorAll('.main__pageItemNum');
+    for(element of totalElementsNum){
+        if(arrayOfPosts.length - 1 < numPerPage && arrayOfPosts.length - 1 < end){
+            console.log('more than');
+            element.textContent = "Prikaz " + start + "-" + pageElements.length + " od " + arrayOfPosts.length + " proizvoda";
+        }
+        else if(arrayOfPosts.length - 1 >= numPerPage && arrayOfPosts.length - 1 >= end){
+            console.log('less than');
+            element.textContent = "Prikaz " + start + "-" + end + " od " + arrayOfPosts.length + " proizvoda";
+        }
+        else{
+            console.log('else display');
+            element.textContent = "Prikaz " + start + "-" + (start + pageElements.length) + " od " + arrayOfPosts.length + " proizvoda";
+        }
+    }
+}
+
 function changePageNum(){
     const numPerPage = 30;
-    let currentPage = 1;
     let arrayOfitems = Array.from(container.children);
-    const arrayOfPosts = [...arrayOfitems].filter(item => item.classList.contains('main__singleImgContainer'));
+    let arrayOfPosts = [...arrayOfitems].filter(item => item.classList.contains('main__singleImgContainer'));
     const numCont = document.querySelectorAll('.main__pagesNumCont');
     const pageNum = document.querySelector('.main__viewPageNum');
-    const totalElementsNum = document.querySelectorAll('.main__pageItemNum');
     const totalPages = Math.ceil(arrayOfPosts.length/numPerPage);
 
-    const start = (currentPage - 1) * numPerPage;
+    const start = (currentPageNum - 1) * numPerPage;
     const end = start + numPerPage;
     const pageElements = arrayOfPosts.slice(start,end);
-
+    console.log(start,end)
     overFlow(start,end,arrayOfPosts);
+    displayText(pageElements,arrayOfPosts,start,end,numPerPage);
     // writes current page element numbers and total number of elements
     //check the length of the array of elements called with SelectorAll(2 containers have page numbers) and then check their children length.
     for(let i = 0; i < numCont.length; i++){
         const currentNumPages = numCont[i].children.length;
 
-        for(element of totalElementsNum){
-            if(arrayOfPosts.length - 1 < numPerPage && arrayOfPosts.length - 1 < end){
-                // console.log('more than');
-                element.textContent = "Prikaz " + start + "-" + pageElements.length + " od " + arrayOfPosts.length + " proizvoda";
-            }
-            else if(arrayOfPosts.length - 1 >= numPerPage && arrayOfPosts.length - 1 >= end){
-                // console.log('less than');
-                element.textContent = "Prikaz " + start + "-" + end + " od " + arrayOfPosts.length + " proizvoda";
-            }
-        }
         //if there is more elements then current pages can fit, clone the last number and add + 1 to its textContent value
         if(currentNumPages < totalPages){
             for(let j = currentNumPages + 1; j <= totalPages; j++){
@@ -265,57 +332,3 @@ function deleteListItem(){
     }
 }
 deleteListItem();
-
-    // viewItemNum.innerHTML = "Prikaz"+ arrayOfPosts[0] + "-" + numberOfItems-1 + numberOfItems + "proizvoda";
-//     const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
-//     const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
-//     const mainContainer = document.querySelector('main__imagesContainer');
-
-//     // const slide = (currentSlide,targetSlide) =>{
-     
-//     // }
-//     const pageNum = (currentPage,targetPage) =>{
-//         currentPage.classList.remove('current-slideNumber');
-//         targetPage.classList.add('current-slideNumber');
-//     }
-//    //DISABLING BTMS
-//     const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn)=>{
-//         if(targetIndex === 0 ){
-//             pagePrevBtn.classList.add('disabled');
-//             pageNextBtn.classList.remove('disabled');
-//         }else if(targetIndex === numCont - 1 ){
-//             pagePrevBtn.classList.remove('disabled');
-//             pageNextBtn.classList.add('disabled');
-//         }else{
-//             pagePrevBtn.classList.remove('disabled');
-//             pageNextBtn.classList.remove('disabled');
-//         }
-//     }
-//     //CHANGING PAGE WITH BUTTONS
-// function changingPage(){
-//     pagePrevBtn.forEach(pagePrevBtn => {
-//         pagePrevBtn.addEventListener('click', () =>{
-//             // const currentSlide =  document.querySelector('current-slideNumber');
-//             // const prevSlide = currentSlide.previousElementSibling;
-//             const currentPage = document.querySelector('.current-slideNumber');
-//             const prevPage = currentPage.previousElementSibling;
-
-//             // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
-//             pageNum(currentPage, prevPage);
-//             // disabledBtn(prevIndex,pagePrevBtn);
-//         })
-//     })
-//     pageNextBtn.forEach(pageNextBtn =>{
-//         pageNextBtn.addEventListener('click', () =>{
-//             const currentPage = document.querySelector('.current-slideNumber');
-//             const nextPage = currentPage.nextElementSibling;
-//             // const currentSlide = document.querySelector('current-slideNumber');
-//             // const nextSlide = currentSlide.nextElementSibling;
-
-//             // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
-//             pageNum(currentPage, nextPage);
-//             // disabledBtn(nextIndex, pageNextBtn);
-//         });
-//     })
-//  }
-// changingPage()
