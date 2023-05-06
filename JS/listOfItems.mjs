@@ -71,6 +71,8 @@ function changeImage1() {
     document.getElementById("main__View2").src="../Images/menu.png";
     document.getElementById("main__View3").src="../Images/list.png";
  }
+ 
+ changePageNum();
 }
 function changeImage2() {
     const description = document.querySelectorAll('.main__description');
@@ -123,6 +125,8 @@ function changeImage2() {
         document.getElementById("main__View1").src="../Images/grid.png";
         document.getElementById("main__View3").src="../Images/list.png";
     }
+    
+    changePageNum();
 }
 function changeImage3(){
     const description = document.querySelectorAll('.main__description');
@@ -174,9 +178,11 @@ function changeImage3(){
         document.getElementById("main__View1").src="../Images/grid.png";
         document.getElementById("main__View2").src="../Images/menu.png";
 }
+
+changePageNum();
 }
 
-const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
+    const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
     const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
     const mainContainer = document.querySelector('main__imagesContainer');
 
@@ -201,54 +207,7 @@ const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
         }
     }
     //CHANGING PAGE WITH BUTTONS
-    let currentPageNum = 1;
-function changingPage(){
-    pagePrevBtn.forEach(pagePrevBtn => {
-        pagePrevBtn.addEventListener('click', () =>{
-            // const currentSlide =  document.querySelector('current-slideNumber');
-            // const prevSlide = currentSlide.previousElementSibling;
-            const currentPage = document.querySelector('.current-slideNumber');
-            const prevPage = currentPage.previousElementSibling;
-            currentPageNum = currentPageNum - 1;
-            // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
-            pageNum(currentPage, prevPage);
-            changePageNum();
-            overFlow();
-            displayText();
-            // disabledBtn(prevIndex,pagePrevBtn);
-        })
-    })
-    pageNextBtn.forEach(pageNextBtn =>{
-        pageNextBtn.addEventListener('click', () =>{
-            const currentPage = document.querySelector('.current-slideNumber');
-            const nextPage = currentPage.nextElementSibling;
-            currentPageNum = currentPageNum + 1 ;
-            // const currentSlide = document.querySelector('current-slideNumber');
-            // const nextSlide = currentSlide.nextElementSibling;
-
-            // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
-            pageNum(currentPage, nextPage);
-            changePageNum();
-            overFlow();
-            displayText();
-            // disabledBtn(nextIndex, pageNextBtn);
-        });
-    })
-    return currentPageNum;
- }
- 
-function overFlow(start,end,arrayOfPosts){
-    // for(let i = 0; i < container.length; i++){
-            if(start <= arrayOfPosts.length && end >= arrayOfPosts.length){
-                singleContainer.style.display = 'flex';
-                console.log('gut');
-            }else{
-                singleContainer.style.display = "none";
-                console.log('nein');
-            }
-        }
-
-        changingPage(currentPageNum);
+    var currentPageNum = 1;
 // function that checks the number of Elements(posts in this case),and if theres more then 'numPerPage',adds new Pagination Number that is cloned from previously added one in HTML. Or removes if theres less elements.
 //Also changes the current and total number of elements
 function displayText(pageElements,arrayOfPosts,start,end,numPerPage){
@@ -280,8 +239,6 @@ function changePageNum(){
     const start = (currentPageNum - 1) * numPerPage;
     const end = start + numPerPage;
     const pageElements = arrayOfPosts.slice(start,end);
-    console.log(start,end)
-    overFlow(start,end,arrayOfPosts);
     displayText(pageElements,arrayOfPosts,start,end,numPerPage);
     // writes current page element numbers and total number of elements
     //check the length of the array of elements called with SelectorAll(2 containers have page numbers) and then check their children length.
@@ -304,6 +261,14 @@ function changePageNum(){
             }
         }
     }
+      //Changing visibility of items based on page number
+      for(i = 0; i < arrayOfPosts.length;i++){
+        arrayOfPosts[i].style.display = "none";
+        if(start <= i && end >= i){
+            pageElements[i - start].style.display = "flex";
+            console.log('gut');
+        }
+   }
  }
 changePageNum();
 
@@ -332,3 +297,38 @@ function deleteListItem(){
     }
 }
 deleteListItem();
+
+function changingPage(){
+    pagePrevBtn.forEach(pagePrevBtn => {
+        pagePrevBtn.addEventListener('click', () =>{
+            // const currentSlide =  document.querySelector('current-slideNumber');
+            // const prevSlide = currentSlide.previousElementSibling;
+            const currentPage = document.querySelector('.current-slideNumber');
+            const prevPage = currentPage.previousElementSibling;
+            currentPageNum = currentPageNum - 1;
+            // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
+            pageNum(currentPage, prevPage);
+            changePageNum();
+            displayText();
+            // disabledBtn(prevIndex,pagePrevBtn);
+        });
+    })
+    pageNextBtn.forEach(pageNextBtn =>{
+        pageNextBtn.addEventListener('click', () =>{
+            const currentPage = document.querySelector('.current-slideNumber');
+            const nextPage = currentPage.nextElementSibling;
+            currentPageNum = currentPageNum + 1 ;
+            // const currentSlide = document.querySelector('current-slideNumber');
+            // const nextSlide = currentSlide.nextElementSibling;
+            // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
+            pageNum(currentPage, nextPage);
+            changePageNum();
+            displayText();
+            // disabledBtn(nextIndex, pageNextBtn);
+        });
+        
+    })
+    return currentPageNum;
+ }
+changingPage(currentPageNum);
+console.log(currentPageNum);
