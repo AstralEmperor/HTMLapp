@@ -182,30 +182,8 @@ function changeImage3(){
 changePageNum();
 }
 
-    const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
-    const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
-    const mainContainer = document.querySelector('main__imagesContainer');
 
-    // const slide = (currentSlide,targetSlide) =>{
-     
-    // }
-    const pageNum = (currentPage,targetPage) =>{
-        currentPage.classList.remove('current-slideNumber');
-        targetPage.classList.add('current-slideNumber');
-    }
-   //DISABLING BTMS
-    const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn)=>{
-        if(targetIndex === 0 ){
-            pagePrevBtn.classList.add('disabled');
-            pageNextBtn.classList.remove('disabled');
-        }else if(targetIndex === numCont - 1 ){
-            pagePrevBtn.classList.remove('disabled');
-            pageNextBtn.classList.add('disabled');
-        }else{
-            pagePrevBtn.classList.remove('disabled');
-            pageNextBtn.classList.remove('disabled');
-        }
-    }
+
     //CHANGING PAGE WITH BUTTONS
     var currentPageNum = 1;
 // function that checks the number of Elements(posts in this case),and if theres more then 'numPerPage',adds new Pagination Number that is cloned from previously added one in HTML. Or removes if theres less elements.
@@ -213,16 +191,13 @@ changePageNum();
 function displayText(pageElements,arrayOfPosts,start,end,numPerPage){
     const totalElementsNum = document.querySelectorAll('.main__pageItemNum');
     for(element of totalElementsNum){
-        if(arrayOfPosts.length - 1 < numPerPage && arrayOfPosts.length - 1 < end){
-            console.log('more than');
+        if(arrayOfPosts && arrayOfPosts.length - 1 < numPerPage && arrayOfPosts.length - 1 < end){
             element.textContent = "Prikaz " + start + "-" + pageElements.length + " od " + arrayOfPosts.length + " proizvoda";
         }
-        else if(arrayOfPosts.length - 1 >= numPerPage && arrayOfPosts.length - 1 >= end){
-            console.log('less than');
+        else if(arrayOfPosts && arrayOfPosts.length - 1 >= numPerPage && arrayOfPosts.length - 1 >= end){
             element.textContent = "Prikaz " + start + "-" + end + " od " + arrayOfPosts.length + " proizvoda";
         }
-        else{
-            console.log('else display');
+        else if(pageElements){
             element.textContent = "Prikaz " + start + "-" + (start + pageElements.length) + " od " + arrayOfPosts.length + " proizvoda";
         }
     }
@@ -232,10 +207,10 @@ function changePageNum(){
     const numPerPage = 30;
     let arrayOfitems = Array.from(container.children);
     let arrayOfPosts = [...arrayOfitems].filter(item => item.classList.contains('main__singleImgContainer'));
-    const numCont = document.querySelectorAll('.main__pagesNumCont');
+    let numCont = document.querySelectorAll('.main__pagesNumCont');
+
     const pageNum = document.querySelector('.main__viewPageNum');
     const totalPages = Math.ceil(arrayOfPosts.length/numPerPage);
-
     const start = (currentPageNum - 1) * numPerPage;
     const end = start + numPerPage;
     const pageElements = arrayOfPosts.slice(start,end);
@@ -264,9 +239,8 @@ function changePageNum(){
       //Changing visibility of items based on page number
       for(i = 0; i < arrayOfPosts.length;i++){
         arrayOfPosts[i].style.display = "none";
-        if(start <= i && end >= i){
+        if(start <= i && end > i){
             pageElements[i - start].style.display = "flex";
-            console.log('gut');
         }
    }
  }
@@ -298,33 +272,64 @@ function deleteListItem(){
 }
 deleteListItem();
 
+const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
+const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
+
+const pageNum = (currentPage,targetPage) =>{
+    currentPage.classList.remove('current-slideNumber');
+    targetPage.classList.add('current-slideNumber');
+}
+//DISABLING BTMS
+const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn , numbers) =>{
+    if(targetIndex === 0){
+        pagePrevBtn.classList.add('disabled');
+        pageNextBtn.classList.remove('disabled');
+    }else if(numbers && targetIndex === numbers.length - 1){
+        pagePrevBtn.classList.remove('disabled');
+        pageNextBtn.classList.add('disabled');
+    }else{
+        pagePrevBtn.classList.remove('disabled');
+        pageNextBtn.classList.remove('disabled');
+    }
+}
+
 function changingPage(){
+    
     pagePrevBtn.forEach(pagePrevBtn => {
         pagePrevBtn.addEventListener('click', () =>{
+            const numCount = document.querySelector('.main__pagesNumCont');
+            const numbers = Array.from(numCount.children);
+            console.log(numbers)
             // const currentSlide =  document.querySelector('current-slideNumber');
             // const prevSlide = currentSlide.previousElementSibling;
             const currentPage = document.querySelector('.current-slideNumber');
             const prevPage = currentPage.previousElementSibling;
+            const prevIndex = numbers.findIndex(number => number === prevPage);
             currentPageNum = currentPageNum - 1;
             // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
-            pageNum(currentPage, prevPage);
             changePageNum();
             displayText();
-            // disabledBtn(prevIndex,pagePrevBtn);
+            pageNum(currentPage, prevPage);
+            disabledBtn(prevIndex,pagePrevBtn,numbers);
+
         });
     })
     pageNextBtn.forEach(pageNextBtn =>{
         pageNextBtn.addEventListener('click', () =>{
+            const numCount = document.querySelector('.main__pagesNumCont');
+            const numbers = Array.from(numCount.children);
+
             const currentPage = document.querySelector('.current-slideNumber');
             const nextPage = currentPage.nextElementSibling;
+            const nextIndex = numbers.findIndex(number => number === nextPage);
+            console.log(nextIndex)
             currentPageNum = currentPageNum + 1 ;
-            // const currentSlide = document.querySelector('current-slideNumber');
-            // const nextSlide = currentSlide.nextElementSibling;
-            // const nextIndex = currentSlide.indexOf(slide => slide == nextSlide)
-            pageNum(currentPage, nextPage);
+            
             changePageNum();
             displayText();
-            // disabledBtn(nextIndex, pageNextBtn);
+            pageNum(currentPage, nextPage);
+            disabledBtn(nextIndex, pageNextBtn, numbers);
+
         });
         
     })
