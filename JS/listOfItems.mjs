@@ -232,7 +232,6 @@ function changePageNum(){
         }else if (currentNumPages > totalPages && totalPages >= 1){
             while(numCont[i].children.length > totalPages){
                 numCont[i].removeChild(numCont[i].lastChild);
-                displayPage(numPerPage,arrayOfPosts,currentNumPages);
             }
         }
     }
@@ -272,48 +271,65 @@ function deleteListItem(){
 }
 deleteListItem();
 
-const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
-const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
-
+//Current page number
 const pageNum = (currentPage,targetPage) =>{
+    const numCountAll = document.querySelectorAll('.main__pagesNumCont');
+
     currentPage.classList.remove('current-slideNumber');
     targetPage.classList.add('current-slideNumber');
 }
 //DISABLING BTMS
-const disabledBtn = (targetIndex ,pagePrevBtn, pageNextBtn , numbers) =>{
+
+const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
+const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
+
+const disabledBtn = (targetIndex, numCount) =>{
     if(targetIndex === 0){
-        pagePrevBtn.classList.add('disabled');
-        pageNextBtn.classList.remove('disabled');
-    }else if(numbers && targetIndex === numbers.length - 1){
-        pagePrevBtn.classList.remove('disabled');
-        pageNextBtn.classList.add('disabled');
+        console.log('no-previous')
+        pagePrevBtn.forEach((pagePreviousButton) =>{
+            pagePreviousButton.classList.add('disabled');
+        })
+        pageNextBtn.forEach((pageNextButton) =>{
+            pageNextButton.classList.remove('disabled');
+        })
+    }else if(targetIndex === numCount.children.length - 1){
+        console.log('no-next')
+        pagePrevBtn.forEach((pagePreviousButton) =>{
+            pagePreviousButton.classList.remove('disabled');
+        })
+        pageNextBtn.forEach((pageNextButton) =>{
+            pageNextButton.classList.add('disabled');
+        })
     }else{
-        pagePrevBtn.classList.remove('disabled');
-        pageNextBtn.classList.remove('disabled');
+        console.log('between')
+        pagePrevBtn.forEach((pagePreviousButton) =>{
+            pagePreviousButton.classList.remove('disabled');
+        })
+        pageNextBtn.forEach((pageNextButton) =>{
+            pageNextButton.classList.remove('disabled');
+        })
     }
 }
 
 function changingPage(){
-    
+ // On each of the Previous buttons clicked, change page;button availability
     pagePrevBtn.forEach(pagePrevBtn => {
         pagePrevBtn.addEventListener('click', () =>{
             const numCount = document.querySelector('.main__pagesNumCont');
             const numbers = Array.from(numCount.children);
-            console.log(numbers)
-            // const currentSlide =  document.querySelector('current-slideNumber');
-            // const prevSlide = currentSlide.previousElementSibling;
             const currentPage = document.querySelector('.current-slideNumber');
             const prevPage = currentPage.previousElementSibling;
             const prevIndex = numbers.findIndex(number => number === prevPage);
             currentPageNum = currentPageNum - 1;
-            // const prevIndex = currentSlide.indexOf(slide => slide == prevSlide)
+
             changePageNum();
             displayText();
             pageNum(currentPage, prevPage);
-            disabledBtn(prevIndex,pagePrevBtn,numbers);
+            disabledBtn(prevIndex,numCount);
 
         });
     })
+    // On each of the Next buttons clicked, change page;button availability
     pageNextBtn.forEach(pageNextBtn =>{
         pageNextBtn.addEventListener('click', () =>{
             const numCount = document.querySelector('.main__pagesNumCont');
@@ -322,18 +338,16 @@ function changingPage(){
             const currentPage = document.querySelector('.current-slideNumber');
             const nextPage = currentPage.nextElementSibling;
             const nextIndex = numbers.findIndex(number => number === nextPage);
-            console.log(nextIndex)
             currentPageNum = currentPageNum + 1 ;
             
             changePageNum();
             displayText();
             pageNum(currentPage, nextPage);
-            disabledBtn(nextIndex, pageNextBtn, numbers);
+            disabledBtn(nextIndex, numCount);
 
         });
         
     })
     return currentPageNum;
  }
-changingPage(currentPageNum);
-console.log(currentPageNum);
+changingPage();
