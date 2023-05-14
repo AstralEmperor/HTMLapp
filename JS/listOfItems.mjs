@@ -3,6 +3,8 @@ const viewItemNum = document.getElementById('numberOfItems--1');
 const singleContainer = document.getElementsByClassName('main__singleImgContainer')[0];
 const specialContainer = document.querySelector('.man__singleImgContainer--special');
 
+const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
+const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
 // Function for cloning 'first' original item 
 function listTemplate(){
     let copySingleCont = singleContainer.cloneNode(true); 
@@ -235,6 +237,16 @@ function changePageNum(){
             }
         }
     }
+    //If there is only 1 page, disable buttons
+    if(totalPages <= 1){
+        pageNextBtn.forEach((pageNextButton) =>{
+            pageNextButton.classList.add('disabled');
+        })
+    }else if(totalPages > 1){
+        pageNextBtn.forEach((pageNextButton) =>{
+            pageNextButton.classList.remove('disabled');
+        })
+    }
       //Changing visibility of items based on page number
       for(i = 0; i < arrayOfPosts.length;i++){
         arrayOfPosts[i].style.display = "none";
@@ -273,15 +285,12 @@ deleteListItem();
 
 //Current page number
 const pageNum = (currentPage,targetPage) =>{
-    const numCountAll = document.querySelectorAll('.main__pagesNumCont');
 
     currentPage.classList.remove('current-slideNumber');
     targetPage.classList.add('current-slideNumber');
 }
 //DISABLING BTMS
 
-const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
-const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
 
 const disabledBtn = (targetIndex, numCount) =>{
     if(targetIndex === 0){
@@ -310,13 +319,25 @@ const disabledBtn = (targetIndex, numCount) =>{
         })
     }
 }
+// function compare(numbers,numbers2){
+//     let combinedArray = [];
+//     numbers.forEach((e1) => numbers2.forEach((e2) =>{
+//         console.log(e1.textContent === e2.textContent)
+//         if(e1.textContent === e2.textContent){
+//             combinedArray.push(e1);
+//         }
+//     }));
+//     console.log(combinedArray)
+// }
 
 function changingPage(){
  // On each of the Previous buttons clicked, change page;button availability
     pagePrevBtn.forEach(pagePrevBtn => {
         pagePrevBtn.addEventListener('click', () =>{
             const numCount = document.querySelector('.main__pagesNumCont');
+
             const numbers = Array.from(numCount.children);
+
             const currentPage = document.querySelector('.current-slideNumber');
             const prevPage = currentPage.previousElementSibling;
             const prevIndex = numbers.findIndex(number => number === prevPage);
@@ -333,6 +354,7 @@ function changingPage(){
     pageNextBtn.forEach(pageNextBtn =>{
         pageNextBtn.addEventListener('click', () =>{
             const numCount = document.querySelector('.main__pagesNumCont');
+
             const numbers = Array.from(numCount.children);
 
             const currentPage = document.querySelector('.current-slideNumber');
@@ -346,7 +368,6 @@ function changingPage(){
             disabledBtn(nextIndex, numCount);
 
         });
-        
     })
     return currentPageNum;
  }
