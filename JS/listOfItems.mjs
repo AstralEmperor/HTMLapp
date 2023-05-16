@@ -16,7 +16,7 @@ function createListItems(){
     for(i = 0; i < number; i++){
         listTemplate();
         deleteListItem();
-       
+        createComment();
     }
 }
 createListItems();
@@ -282,7 +282,26 @@ function deleteListItem(){
     }
 }
 deleteListItem();
-
+function createComment(){
+    // const singleCont = document.querySelectorAll(".main__singleImgContainer");
+    const messagesBtn = document.querySelectorAll('.main__chatBox');
+    // for(let i = 0; i < singleCont.length; i++){
+        for(messageB of messagesBtn){
+            let maxInputBox = 1;
+            let inputCount = 0;
+            messageB.addEventListener('click', () =>{
+                inputCount++;
+                if(inputCount > 1){
+                    return;
+                }else{
+           }
+            // let input = document.createElement('textbox');
+            // input.placeholder = 'Type something';
+            // container.appendChild(input); 
+        });
+    };
+}
+createComment();
 //Current page number
 const pageNum = (currentPage,targetPage) =>{
 
@@ -360,15 +379,15 @@ function changingPage(){
             const currentPage = document.querySelector('.current-slideNumber');
             const nextPage = currentPage.nextElementSibling;
             const nextIndex = numbers.findIndex(number => number === nextPage);
-            currentPageNum = currentPageNum + 1 ;
+            currentPageNum = currentPageNum + 1;
             
             changePageNum();
             displayText();
             pageNum(currentPage, nextPage);
             disabledBtn(nextIndex, numCount);
-
         });
     })
     return currentPageNum;
  }
 changingPage();
+
