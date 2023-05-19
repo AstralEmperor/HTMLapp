@@ -14,6 +14,8 @@
     --blackish:#231F20;
     --online:#00cf00;
     --offline:#fb0101;
+    --quarterBtn1:#b61212;
+    --quarterBtn2:#920c0c;
     --wrong:#9e0101;
     --secondNav:#dee0e2;
     --tableTxt:#000000;
@@ -64,6 +66,26 @@ outline:var(--btnText);
 .tertiaryBtn:focus{
     outline:var(--blue);
     /* background-color:var(--line); */
+}
+.quarterBtn{
+    background-color:var(--quarterBtn1);
+    border:none;
+    padding:0 4px;
+    cursor:pointer;
+    color:var(--lightGray);
+    border-radius:4px;
+    font-size:12px;
+    transition: 0.2s all;
+}
+.quarterBtn:hover,
+.quarterBtn:focus{
+    background-color:var(--quarterBtn2);
+}
+.quarterBtn:hover{
+    outline:var(--btnText);
+}
+.quarterBtn:focus{
+    outline:var(--btnText);
 }
 .add-item:hover,
 .add-item:active{

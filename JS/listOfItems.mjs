@@ -15,8 +15,8 @@ let number = 22;
 function createListItems(){
     for(i = 0; i < number; i++){
         listTemplate();
-        deleteListItem();
         createComment();
+        deleteListItem();
     }
 }
 createListItems();
@@ -282,23 +282,43 @@ function deleteListItem(){
     }
 }
 deleteListItem();
+
+//Creating input comment on button click, for every card
 function createComment(){
-    // const singleCont = document.querySelectorAll(".main__singleImgContainer");
-    const messagesBtn = document.querySelectorAll('.main__chatBox');
-    // for(let i = 0; i < singleCont.length; i++){
-        for(messageB of messagesBtn){
-            let maxInputBox = 1;
-            let inputCount = 0;
-            messageB.addEventListener('click', () =>{
-                inputCount++;
-                if(inputCount > 1){
-                    return;
-                }else{
-           }
-            // let input = document.createElement('textbox');
-            // input.placeholder = 'Type something';
-            // container.appendChild(input); 
+        const container = document.querySelector('.main__imagesContainer');
+        let arrayOfitems = Array.from(container.children);
+        let arrayOfPosts = [...arrayOfitems].filter(item => item.classList.contains('main__singleImgContainer'));
+
+        for(let i = 0; i < arrayOfPosts.length;i++){
+            const messagesBtn = arrayOfPosts[i].querySelector('.main__chatBox');
+            const commentCancel = arrayOfPosts[i].querySelector('.main__commentCancel ');
+            const commentBox =  arrayOfPosts[i].querySelector('.main__comment-box');
+            const commentButton = arrayOfPosts[i].querySelector('.main__commentButton');
+            messagesBtn.addEventListener('click', () =>{
+              
+                commentBox.classList.add('active__comment');
         });
+        commentCancel.addEventListener('click', e =>{
+            e.preventDefault();
+            commentBox.classList.remove('active__comment');
+        });
+        commentButton .addEventListener('click', e =>{
+            e.preventDefault();
+            const data = arrayOfPosts[i].querySelector('.main__commentBox').value;
+            
+            console.log(data);
+            fetch('.json',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            .then(res => res.json())
+              .then(data => console.log(data))
+                .catch(error => console.log(error))
+        });
+        
     };
 }
 createComment();
