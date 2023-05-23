@@ -1,0 +1,36 @@
+[{
+    "Status":"Otvoren",
+    "Lokacija":"Zrenjanin",
+    "Opservator":"M.Marko",
+    "Vrsta opservacije":"Personalna",
+    "Datum kreiranja zahteva":"1/5/2023",
+    "Datum odgovora":"/",
+    "Opservacija":"Žalba"
+},
+{
+    "Status":"Zatvoren",
+    "Lokacija":"Zrenjanin",
+    "Opservator":"O.Stefan",
+    "Vrsta opservacije":"Personalna",
+    "Datum kreiranja zahteva":"6/11/2022",
+    "Datum odgovora":"13/11/2023",
+    "Opservacija":"Potražnja"
+},
+{
+    "Status":"Zatvoren",
+    "Lokacija":"Zrenjanin",
+    "Opservator":"Anonymous",
+    "Vrsta opservacije":"Personalna",
+    "Datum kreiranja zahteva":"25/1/2023",
+    "Datum odgovora":"1/2/2023",
+    "Opservacija":"Kupovina"
+},
+{
+    "Status":"Zatvoren",
+    "Lokacija":"Zrenjanin",
+    "Opservator":"N.Milica",
+    "Vrsta opservacije":"Personalna",
+    "Datum kreiranja zahteva":"23/9/2022",
+    "Datum odgovora":"27/10/2022",
+    "Opservacija":"Kupovina"
+}]
