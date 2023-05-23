@@ -1,36 +1,36 @@
 [{
-    "Status":"Otvoren",
-    "Lokacija":"Zrenjanin",
-    "Opservator":"M.Marko",
-    "Vrsta opservacije":"Personalna",
-    "Datum kreiranja zahteva":"1/5/2023",
-    "Datum odgovora":"/",
-    "Opservacija":"Žalba"
+    "status":"Otvoren",
+    "lokacija":"Zrenjanin",
+    "opservator":"M.Marko",
+    "vrsta opservacije":"Personalna",
+    "datum kreiranja zahteva":"1/5/2023",
+    "datum odgovora":"/",
+    "opservacija":"Žalba"
 },
 {
-    "Status":"Zatvoren",
-    "Lokacija":"Zrenjanin",
-    "Opservator":"O.Stefan",
-    "Vrsta opservacije":"Personalna",
-    "Datum kreiranja zahteva":"6/11/2022",
-    "Datum odgovora":"13/11/2023",
-    "Opservacija":"Potražnja"
+    "status":"Zatvoren",
+    "lokacija":"Zrenjanin",
+    "opservator":"O.Stefan",
+    "vrsta opservacije":"Personalna",
+    "datum kreiranja zahteva":"6/11/2022",
+    "datum odgovora":"13/11/2023",
+    "opservacija":"Potražnja"
 },
 {
-    "Status":"Zatvoren",
-    "Lokacija":"Zrenjanin",
-    "Opservator":"Anonymous",
-    "Vrsta opservacije":"Personalna",
-    "Datum kreiranja zahteva":"25/1/2023",
-    "Datum odgovora":"1/2/2023",
-    "Opservacija":"Kupovina"
+    "status":"Zatvoren",
+    "lokacija":"Zrenjanin",
+    "opservator":"Anonymous",
+    "vrsta opservacije":"Personalna",
+    "datum kreiranja zahteva":"25/1/2023",
+    "datum odgovora":"1/2/2023",
+    "opservacija":"Kupovina"
 },
 {
-    "Status":"Zatvoren",
-    "Lokacija":"Zrenjanin",
-    "Opservator":"N.Milica",
-    "Vrsta opservacije":"Personalna",
-    "Datum kreiranja zahteva":"23/9/2022",
-    "Datum odgovora":"27/10/2022",
-    "Opservacija":"Kupovina"
+    "status":"Zatvoren",
+    "lokacija":"Zrenjanin",
+    "opservator":"N.Milica",
+    "vrsta opservacije":"Personalna",
+    "datum kreiranja zahteva":"23/9/2022",
+    "datum odgovora":"27/10/2022",
+    "opservacija":"Kupovina"
 }]

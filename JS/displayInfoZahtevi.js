@@ -1,6 +1,6 @@
 const requestBody = document.querySelector('.zahtevi__body');
 
-    fetch('..JS/zahteviData.json',{
+    fetch('../JS/zahteviData.json',{
         method:'GET',
         headers:{
             "Accept":"application.json"
@@ -24,9 +24,7 @@ function displayData(){
     const zahteviDatum2 = document.querySelector('.zahtevi__data--datum-odgovora').value; 
     const zahteviOpservacija = document.querySelector('.zahtevi__data--opservacija').value; 
 
-    // for(let i = 0; i < requestData.length;i++){
-    //     console.log(requestData.length)
-    // }
 
-    }
+
+}
 displayData();
