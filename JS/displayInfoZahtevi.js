@@ -7,24 +7,32 @@ const requestBody = document.querySelector('.zahtevi__body');
         }
     })
     .then((response) => response.json())
-    .then((data) => {
-        requestData = data;
-        console.log(requestData)
+    .then((zahteviData) => {
+        // console.log(zahteviData)
+        let tableBody = document.querySelector('#data-output');
+        let out = [];
+
+        for(let zahtev of zahteviData){
+            // console.log(zahtev);
+            out+='<tr>\
+            <td>' + zahtev.status + '</td>\
+            <td>' + zahtev.lokacija + '</td>\
+            <td>' + zahtev.opservator + '</td>\
+            <td>' + zahtev.vrstaOpservacije + '</td>\
+            <td>' + zahtev.datumKreiranja + '</td>\
+            <td>' + zahtev.datumOdgovora + '</td>\
+            <td>' + zahtev.opservacija + '</td>\
+            </tr>';
+        }
+        tableBody.innerHTML = out;
+        
+            let displayNum = document.getElementById("zahtevi__displayNumber");
+            const rows = document.querySelectorAll('tbody tr');
+
+            displayNum.textContent = "Prikaz " + 1 + " od " + rows.length + " od ukupno "+ rows.length +" elemenata";
+        
     })
      .catch(error => console.log(error))
 
-function displayData(){
-    const requestRow = document.querySelector('.zahtevi__red');
 
-    const zahteviStatus = document.querySelector('.zahtevi__data--status').value; 
-    const zahteviLokacija = document.querySelector('.zahtevi__data--lokacija').value; 
-    const zahteviOpservator = document.querySelector('.zahtevi__data--opservator').value; 
-    const zahteviVrstaOpser = document.querySelector('.zahtevi__data--vrsta-opservacije').value; 
-    const zahteviDatum1 = document.querySelector('.zahtevi__data--datum-slanja').value; 
-    const zahteviDatum2 = document.querySelector('.zahtevi__data--datum-odgovora').value; 
-    const zahteviOpservacija = document.querySelector('.zahtevi__data--opservacija').value; 
-
-
-
-}
-displayData();
+     
