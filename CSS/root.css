@@ -20,7 +20,7 @@
     --quarterBtn2:#920c0c;
     --wrong:#9e0101;
     --secondNav:#dee0e2;
-    --tableTxt:#000000;
+    --tableTxt:#494949;
 }
 :is(.login__input, .email__input, .main__input, .zahtev__input):hover{
     border:1px solid var(--blue);

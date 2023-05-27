@@ -1,0 +1,19 @@
+[{
+  "name":"Marko",
+  "email":"warriorpronb55@gmail.com",
+  "ogranicenje":"Ne",
+  "status":"online"
+},
+{
+  "name":"Nikola",
+  "email":"warriorpronb55@gmail.com",
+  "ogranicenje":"Da",
+  "status":"offline"
+
+},
+{
+  "name":"Maja",
+  "email":"warriorpronb55@gmail.com",
+  "ogranicenje":"Da",
+  "status":"offline"
+}]

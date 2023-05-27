@@ -279,7 +279,7 @@ function deleteListItem(){
             setTimeout(()=>{
                 singleCont[i].remove();
                 changePageNum();
-            },500)
+            },100)
         })
     }
 }

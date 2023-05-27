@@ -171,10 +171,6 @@ margin-right:5px;
     display:grid;
     grid-gap:24px;
     transition: all .5s ease-in-out;
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -ms-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
     grid-template-columns: repeat(auto-fit, minmax(279px, 6fr));
 }
 .main__singleImgContainer{

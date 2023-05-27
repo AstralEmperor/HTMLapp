@@ -61,11 +61,20 @@ gap:10px;
 .main__searchUl{
     margin-top:30px;
     width:100%;
-    text-align:left;
+    text-align:center;
+    align-content:center;
+    border-spacing:0;
+    color:var(--tableTxt);
+}
+.main__korisnici--ograničenje{
+text-align: center;
 }
 .main__tableHeader > tr > th{
     min-height:50px;
     padding:20px 0;
+}
+.main__tableHeader{
+    background-color:var(--blueVariant2);
 }
 .main__view--zahtevi{
     display:flex;
