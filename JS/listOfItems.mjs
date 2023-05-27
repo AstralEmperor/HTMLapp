@@ -276,8 +276,10 @@ function deleteListItem(){
     for(let i = 0; i < singleCont.length; i++){
         const deleteBtn = singleCont[i].querySelector('.main__deleteImg');
         deleteBtn.addEventListener('click', () =>{
-            singleCont[i].remove();
-            changePageNum();
+            setTimeout(()=>{
+                singleCont[i].remove();
+                changePageNum();
+            },500)
         })
     }
 }

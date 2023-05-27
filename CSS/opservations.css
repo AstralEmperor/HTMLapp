@@ -170,6 +170,11 @@ margin-right:5px;
 .main__imagesContainer{
     display:grid;
     grid-gap:24px;
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
     grid-template-columns: repeat(auto-fit, minmax(279px, 6fr));
 }
 .main__singleImgContainer{
@@ -182,6 +187,7 @@ margin-right:5px;
 .man__singleImgContainer--special{
     width:100%;
     justify-content:space-between;
+    transition: all .5s ease-in-out;
     display:none;
 }
 .main__image{
