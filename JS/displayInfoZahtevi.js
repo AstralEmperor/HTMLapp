@@ -56,6 +56,7 @@ const requestBody = document.querySelector('.zahtevi__body');
                 }else{
                     rows[i].style.background = "#F4F4F4";
                 }
+                
             }
     })
      .catch(error => console.log(error))
