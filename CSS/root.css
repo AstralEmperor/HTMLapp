@@ -10,6 +10,7 @@
     --line:#CED4DA;
     --gray:#c9c9c9;
     --navMquery:#b6b6b6;
+    --tableHeader:#979797;
     --btnText:#505759;
     --black:#000000;
     --white:#ffffff;
@@ -89,10 +90,16 @@ outline:var(--btnText);
 .quarterBtn:focus{
     outline:var(--btnText);
 }
-.add-item:hover,
-.add-item:active{
-background-color:var(--gray);
-color:var(--black);
+.listHeaderBtn{
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+    color:var(--tableTxt);
+}
+.listHeaderBtn:hover{
+    color:var(--tableHeader);
 }
 .currentPage{
     color:var(--blueVariant);
