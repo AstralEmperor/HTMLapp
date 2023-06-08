@@ -21,6 +21,12 @@ function createListItems(){
 }
 createListItems();
 
+const applyStyles = (elements, styles) =>{
+    for(let i=0; i < elements.length; i++){
+        elements[i].style.cssText = styles;
+    }
+};
+
 //3 functions for View changing on button Press. 
 function changeImage1() {
     const description = document.querySelectorAll('.main__description');
@@ -32,50 +38,33 @@ function changeImage1() {
     const buttons = document.querySelectorAll(".main__picBtns");
     const searchDescr = document.querySelectorAll(".man__singleImgContainer--special");
     const searchText = document.querySelectorAll(".main__text--special");
+    const mainView1 =document.getElementById("main__View1");
 
-    if (document.getElementById("main__View1").src == "../Images/grid.png"){
-        document.getElementById("main__View1").src = "../Images/grid-blue.png";
+    if (mainView1.src.endsWith('grid-blue.png')){
+        mainView1.src = "../Images/grid-blue.png";
         
 }else{
-    document.getElementById("main__View1").src = "../Images/grid-blue.png";
+    mainView1.src = "../Images/grid-blue.png";
     container.style.cssText="grid-gap:24px;grid-template-columns: repeat(auto-fit, minmax(279px, 6fr));";
     document.querySelector(".main__picBtns").style.cssText ="min-width:279px;";
 
-    for(let i=0; i < description.length; i++){
-        description[i].style.cssText ="display:grid;";
-        mainText[i].style.cssText="display:flex";
-    }
-    for(let i=0; i < chat.length; i++){
-        chat[i].style.cssText ="width:20px;height:18px; ";
-    }
-    for(let i=0; i < del.length; i++){
-        del[i].style.cssText ="width:18px;height:18px; ";
-    }
-    for(let i=0; i < mainText.length; i++){
-        mainText[i].style.cssText="display:flex";
-    }
-    for(let i=0; i < singleCont.length; i++){
-        singleCont[i].style.cssText="display:flex;flex-direction:column;margin-top:30px;";
-    }
-    for(let i=0; i < infoCont.length; i++){
-    infoCont[i].style.cssText ="display:flex;flex-direction:column;";
-    }
-    for(let i=0; i < buttons.length; i++){
-     buttons[i].style.cssText="height:41px";
-    }
-    for(let i=0; i < searchText.length; i++){
-        searchText[i].style.cssText="display:none;";
-    }
-    for(let i=0; i < searchDescr.length; i++){
-        searchDescr[i].style.cssText="display:none;";
-    }
+    applyStyles(description, "display: grid");
+    applyStyles(mainText, "display: flex");
+    applyStyles(chat,"width:20px;height:20px");
+    applyStyles(del,"width:18px;height:18px");
+    applyStyles(singleCont,"display:flex;flex-direction:column;margin-top:30px");
+    applyStyles(infoCont,"display:flex;flex-direction:column");
+    applyStyles(buttons,"height:41px");
+    applyStyles(searchText,"display:none");
+    applyStyles(searchDescr,"display:none");
 
     document.getElementById("main__View2").src="../Images/menu.png";
     document.getElementById("main__View3").src="../Images/list.png";
+  }
  }
  
  changePageNum();
-}
+
 function changeImage2() {
     const description = document.querySelectorAll('.main__description');
     const chat = document.querySelectorAll('.main__chatImg');
@@ -87,42 +76,25 @@ function changeImage2() {
     const searchDescr = document.querySelectorAll(".man__singleImgContainer--special");
     const searchText = document.querySelectorAll(".main__text--special");
 
-    if (document.getElementById("main__View2").src == "../Images/menu.png"){
-          document.getElementById("main__View2").src = "../Images/menu-blue.png";
+    const mainView2 =document.getElementById("main__View2");
+
+    if (mainView2.src.endsWith('menu-blue.png')){
+        mainView2.src = "../Images/menu-blue.png";
           
     } else {
-        document.getElementById("main__View2").src = "../Images/menu-blue.png";
+        mainView2.src = "../Images/menu-blue.png";
         document.getElementsByClassName("main__imagesContainer")[0].style.cssText ="grid-template-columns: repeat(auto-fit(3fr));grid-gap:29px;";
         document.getElementsByClassName("main__picBtns")[0].style.cssText ="min-width:429px;";
 
-        for(let i=0; i < description.length; i++){
-            description[i].style.cssText ="display:none;";
-            mainText[i].style.cssText="display:flex";
-        }
-        for(let i=0; i < chat.length; i++){
-            chat[i].style.cssText ="width:26px;height:26px;";
-        }
-        for(let i=0; i < del.length; i++){
-            del[i].style.cssText ="width:24px;height:24px;";
-        }
-        for(let i=0; i < mainText.length; i++){
-            mainText[i].style.cssText="display:none";
-        }
-        for(let i=0; i < singleCont.length; i++){
-            singleCont[i].style.cssText="display:flex;flex-direction:column;padding-top:0px;max-width:100%;margin-top:30px;"
-        }
-        for(let i=0; i < infoCont.length; i++){
-            infoCont[i].style.cssText ="display:flex;flex-direction:column;";
-        }
-        for(let i=0; i < buttons.length; i++){
-            buttons[i].style.cssText="height:63px;";
-           }
-        for(let i=0; i < searchText.length; i++){
-            searchText[i].style.cssText="display:none;";
-        }
-        for(let i=0; i < searchDescr.length; i++){
-            searchDescr[i].style.cssText="display:none;";
-        }
+        applyStyles(description,"display:none");
+        applyStyles(mainText,"display:none");
+        applyStyles(chat,"width:26px;height:26px");
+        applyStyles(del,"width:24px;height:24px;");
+        applyStyles(singleCont,"display:flex;flex-direction:column;padding-top:0px;max-width:100%;margin-top:30px");
+        applyStyles(infoCont,"display:flex;flex-direction:column");
+        applyStyles(buttons,"height:63px");
+        applyStyles(searchText,"display:none");
+        applyStyles(searchDescr,"display:none");
   
         document.getElementById("main__View1").src="../Images/grid.png";
         document.getElementById("main__View3").src="../Images/list.png";
@@ -141,41 +113,25 @@ function changeImage3(){
     const searchDescr = document.querySelectorAll(".man__singleImgContainer--special");
     const searchText = document.querySelectorAll(".main__text--special");
 
-    if (document.getElementById("main__View3").src == "../Images/list.png"){
-          document.getElementById("main__View3").src = "../Images/list-blue.png";
+    const mainView3 =document.getElementById("main__View3");
+
+    if (mainView3.src.endsWith('list-blue.png')){
+        mainView3.src = "../Images/list-blue.png";
 
 } else {
-        document.getElementById("main__View3").src = "../Images/list-blue.png";
+        mainView3.src = "../Images/list-blue.png";
         document.getElementsByClassName("main__imagesContainer")[0].style.cssText ="grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));grid-gap:29px;";
         document.getElementsByClassName("main__picBtns")[0].style.cssText ="min-width:93px;max-height:70px";
 
-        for(let i=0; i < description.length; i++){
-            description[i].style.cssText ="display:flex;justify-content:space-between;flex-basis:100%;";
-        }
-        for(let i=0; i < chat.length; i++){
-            chat[i].style.cssText ="width:20px;height:20px; ";
-        }
-        for(let i=0; i < del.length; i++){
-            del[i].style.cssText ="width:18px;height:18px; ";
-        }
-        for(let i=0; i < mainText.length; i++){
-            mainText[i].style.cssText="display:none";
-        }
-        for(let i=0; i < singleCont.length; i++){
-            singleCont[i].style.cssText="display:flex;flex-direction:row;border-top:1px solid gray;max-height:82px;justify-content:space-between;padding:12px 0 12px 0;max-width:100%;margin-top:0px;";
-        }
-        for(let i=0; i < infoCont.length; i++){
-            infoCont[i].style.cssText ="display:flex;flex-direction:row-reverse;flex-basis:80%;";
-            }
-         for(let i=0; i < buttons.length; i++){
-                buttons[i].style.cssText="height:41px;flex-basis:10%;border:none;";
-         }
-         for(let i=0; i < searchText.length; i++){
-            searchText[i].style.cssText="display:flex;justify-content:flex-start;border:none;";
-        }
-        for(let i=0; i < searchDescr.length; i++){
-            searchDescr[i].style.cssText="display:flex;";
-        }
+        applyStyles(description,"display:flex;justify-content:space-between;flex-basis:100%;");
+        applyStyles(mainText,"display:none");
+        applyStyles(chat,"width:20px;height:20px");
+        applyStyles(del,"width:18px;height:18px");
+        applyStyles(singleCont,"display:flex;flex-direction:row;border-top:1px solid gray;max-height:82px;justify-content:space-between;padding:12px 0 12px 0;max-width:100%;margin-top:0px");
+        applyStyles(infoCont,"display:flex;flex-direction:row-reverse;flex-basis:80%");
+        applyStyles(buttons,"height:41px;flex-basis:10%;border:none;");
+        applyStyles(searchText,"display:flex;justify-content:flex-start;border:none");
+        applyStyles(searchDescr,"display:flex");
 
         document.getElementById("main__View1").src="../Images/grid.png";
         document.getElementById("main__View2").src="../Images/menu.png";
@@ -183,8 +139,6 @@ function changeImage3(){
 
 changePageNum();
 }
-
-
 
     //CHANGING PAGE WITH BUTTONS
     var currentPageNum = 1;
