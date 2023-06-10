@@ -71,7 +71,7 @@ getKorisnici().then(korisnici =>{
   //Adds event listener for DELETE button
   let rows = document.querySelectorAll('tbody tr');
   const deleteBtn = document.querySelectorAll('.main__korisnici-Action--delete');
-  for(let i = 0; i < rows.length;i++){
+  for(let i = 0; i < deleteBtn.length;i++){
     updateNumberOfItems(rows);
     deleteBtn[i].addEventListener('click', e =>{
         e.preventDefault();
@@ -88,7 +88,7 @@ getKorisnici().then(korisnici =>{
             return -1;
           }
           else if(b.name < a.name){
-            return -1;
+            return 1;
           }
           return 0;
       })
@@ -101,14 +101,12 @@ getKorisnici().then(korisnici =>{
     e.preventDefault();
     korisnici.sort((a,b)=>{
     if(a.email < b.email){
-        return -1;
+      return -1;
       }
-      else if(b.email < a.email){
-        return -1;
+      else if(a.email > b.email){
+        return 1;
       }
-      else{
-        return 0;
-      }
+
   })
   prototype(korisnici);
   updateNumberOfItems();
@@ -119,14 +117,12 @@ getKorisnici().then(korisnici =>{
     e.preventDefault();
     korisnici.sort((a,b)=>{
     if(a.ogranicenje == 'Da' && b.ogranicenje == 'Ne'){
-        return -1;
+      return -1;
       }
       else if(b.ogranicenje == 'Da' && a.ogranicenje == 'Ne'){
-        return -1;
+        return 1;
       }
-      else{
-        return 0;
-      }
+
       
   })
   prototype(korisnici);
@@ -137,14 +133,11 @@ getKorisnici().then(korisnici =>{
   btnStatus.addEventListener('click', e => {
     e.preventDefault();
     korisnici.sort((a,b)=>{
-    if(a.status == 'offline' && b.status == 'online'){
+    if(a.status == 'online' && b.status == 'offline'){
         return -1;
       }
-      else if(b.status == 'offline' && a.status == 'online'){
-        return -1;
-      }
-      else{
-        return 0;
+    else if(b.status == 'online' && a.status == 'offline'){
+        return 1;
       }
     
   })

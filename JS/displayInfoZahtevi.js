@@ -48,7 +48,7 @@ const requestBody = document.querySelector('.zahtevi__body');
             let displayNum = document.getElementById("zahtevi__displayNumber");
             const rows = document.querySelectorAll('tbody tr');
 
-            displayNum.textContent = "Prikaz " + 1 + " od " + rows.length + " od ukupno "+ rows.length +" elemenata";
+            displayNum.textContent = "Prikaz " + 1 + "-" + rows.length + " od ukupno "+ rows.length +" elemenata";
         
             for(let i = 0; i < rows.length; i++){
                 if( i % 2 !== 0){
