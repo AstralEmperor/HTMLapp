@@ -25,6 +25,7 @@ const requestBody = document.querySelector('.zahtevi__body');
             <td>' + zahtev.opservacija + '</td>\
             </tr>';
         }
+    
 
         tableBody.innerHTML = out;
 

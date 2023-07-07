@@ -72,10 +72,12 @@ getKorisnici().then(korisnici =>{
   let rows = document.querySelectorAll('tbody tr');
   const deleteBtn = document.querySelectorAll('.main__korisnici-Action--delete');
   for(let i = 0; i < deleteBtn.length;i++){
+    
     updateNumberOfItems(rows);
     deleteBtn[i].addEventListener('click', e =>{
         e.preventDefault();
-        rows[i].remove();
+        
+        rows[i].remove(korisnici);
         updateNumberOfItems();
     });
   }

@@ -1,3 +1,4 @@
+
 const container = document.querySelector('.main__imagesContainer');
 const viewItemNum = document.getElementById('numberOfItems--1');
 const singleContainer = document.getElementsByClassName('main__singleImgContainer')[0];
@@ -13,7 +14,7 @@ function listTemplate(){
 //function that creates a new Element(cloning element with listTemplate function,and adding Delete function to new item)
 let number = 22;
 function createListItems(){
-    for(i = 0; i < number; i++){
+    for(let i = 0; i < number; i++){
         listTemplate();
         createComment();
         deleteListItem();
@@ -22,7 +23,7 @@ function createListItems(){
 createListItems();
 
 const applyStyles = (elements, styles) =>{
-    for(let i=0; i < elements.length; i++){
+    for(let i = 0; i < elements.length; i++){
         elements[i].style.cssText = styles;
     }
 };
@@ -146,7 +147,7 @@ changePageNum();
 //Also changes the current and total number of elements
 function displayText(pageElements,arrayOfPosts,start,end,numPerPage){
     const totalElementsNum = document.querySelectorAll('.main__pageItemNum');
-    for(element of totalElementsNum){
+    for(let element of totalElementsNum){
         if(arrayOfPosts && arrayOfPosts.length - 1 < numPerPage && arrayOfPosts.length - 1 < end){
             element.textContent = "Prikaz " + start + "-" + pageElements.length + " od " + arrayOfPosts.length + " proizvoda";
         }
@@ -202,7 +203,7 @@ function changePageNum(){
         })
     }
       //Changing visibility of items based on page number
-      for(i = 0; i < arrayOfPosts.length;i++){
+      for(let i = 0; i < arrayOfPosts.length;i++){
         arrayOfPosts[i].style.display = "none";
         if(start <= i && end > i){
             pageElements[i - start].style.display = "flex";

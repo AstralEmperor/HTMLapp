@@ -1,19 +1,14 @@
-const loginForm = document.querySelector('.login');
- 
 
-fetch('../JS/data.json',{
-  method:'GET',
-  headers:{
-    "Accept": "application/json"
-  }
-})
-.then((response) => response.json())
-.then((data) => {
-  loginInfo = data;
-})
-.catch(error => console.log(error))
+ async function getData(){
+  const res = await fetch('../JS/data.json');
+  const loginInfo = await res.json()
+  return loginInfo;
+ }
 
-loginForm.addEventListener('submit', e =>{
+getData().then(loginInfo => {
+  loginInfo;
+  const loginForm = document.querySelector('.login');
+  loginForm.addEventListener('submit', e =>{
     e.preventDefault();
     const loginName = document.querySelector('.login__name').value;
     const loginEmail = document.querySelector('.login__email').value;
@@ -33,5 +28,4 @@ loginForm.addEventListener('submit', e =>{
   }
   loginForm.reset();
  })
-
-
+})
