@@ -1,4 +1,4 @@
-import{actions, roles} from "../JS/constants.js";
+import{actions, roles} from "./constants.js";
 
 const mappings = new Map();
 

@@ -1,10 +1,6 @@
-
+import  { getKorisnici }  from "../../server/api-folder/api.js";
 // async await funkcija poziva podataka iz JSON-a
-async function getKorisnici(){
-    const response = await fetch('../JS/korisnici.json');
-    const korisnici = await response.json();
-    return korisnici;
-}
+
 // updates number of items constantly, at the bottom of the page
 function updateNumberOfItems(){
     let rows = document.querySelectorAll('tbody tr');
@@ -22,23 +18,35 @@ function updateNumberOfItems(){
 }
 const tbody = document.querySelector('.korisnici__tbody');
 
+async function getUsers(){
+  try{
+    const korisnici = await getKorisnici();
+    return korisnici;
+  }catch(error){
+    console.log(error)
+  }
+}
     // fills table with data brought from JSON file
 function prototype(korisnici){
-    info = '';
-    for(korisnik of korisnici){ 
+    let info = '';
+    for(let korisnik of korisnici){ 
         info += '<tr>\
         <td class ="korisnik__name">' + korisnik.name + '</td>\
         <td>' + korisnik.email + '</td>\
         <td class="korisnik__allowance">' + korisnik.ogranicenje + '</td>\
         <td class="korisnik__status">' + korisnik.status + '</td>\
-        <td><button class="main__korisnici-ActionBtn main__korisnici-Action--EditBtn"><img class="main__korisnici-Action" src="../Images/edit.png" alt="editIcon.png"></button><button class="main__korisnici-ActionBtn"><img class="main__korisnici-Action main__korisnici-Action--delete" src="../Images/delete.png" alt="deleteIcon.png"></button></td>\
+        <td><button class="main__korisnici-ActionBtn main__korisnici-Action--EditBtn">\
+          <img class="main__korisnici-Action" src="../../assets/edit.png" alt="editIcon.png">\
+          </button><button class="main__korisnici-ActionBtn">\
+          <img class="main__korisnici-Action main__korisnici-Action--delete" src="../../assets/delete.png" alt="deleteIcon.png"></button>\
+        </td>\
         </tr>'
     }
     tbody.innerHTML = info;
 
     //changes display(status) based on if the user is online or offline
         const status = document.querySelectorAll('.korisnik__status');
-        for(stat of status){
+        for(let stat of status){
             if(stat.innerHTML === "online"){
                 stat.innerHTML ='<div class="main__korisnici--onlineStatus online"></div>'
     
@@ -51,7 +59,7 @@ function prototype(korisnici){
         }
             //changes display(ogranicenje) based on if the user is limited or not
     const limitation = document.querySelectorAll('.korisnik__allowance');
-    for(limit of limitation){
+    for(let limit of limitation){
         if(limit.innerHTML === "Da"){
             limit.innerHTML = '<div class="main__korisnici--ograničenje online"></div>'
 

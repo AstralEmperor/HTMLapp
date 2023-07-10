@@ -1,6 +1,5 @@
 
 const container = document.querySelector('.main__imagesContainer');
-const viewItemNum = document.getElementById('numberOfItems--1');
 const singleContainer = document.getElementsByClassName('main__singleImgContainer')[0];
 const specialContainer = document.querySelector('.man__singleImgContainer--special');
 
@@ -42,10 +41,10 @@ function changeImage1() {
     const mainView1 =document.getElementById("main__View1");
 
     if (mainView1.src.endsWith('grid-blue.png')){
-        mainView1.src = "../Images/grid-blue.png";
+        mainView1.src = "../../assets/grid-blue.png";
         
 }else{
-    mainView1.src = "../Images/grid-blue.png";
+    mainView1.src = "../../assets/grid-blue.png";
     container.style.cssText="grid-gap:24px;grid-template-columns: repeat(auto-fit, minmax(279px, 6fr));";
     document.querySelector(".main__picBtns").style.cssText ="min-width:279px;";
 
@@ -59,8 +58,8 @@ function changeImage1() {
     applyStyles(searchText,"display:none");
     applyStyles(searchDescr,"display:none");
 
-    document.getElementById("main__View2").src="../Images/menu.png";
-    document.getElementById("main__View3").src="../Images/list.png";
+    document.getElementById("main__View2").src="../../assets/menu.png";
+    document.getElementById("main__View3").src="../../assets/list.png";
   }
  }
  
@@ -80,10 +79,10 @@ function changeImage2() {
     const mainView2 =document.getElementById("main__View2");
 
     if (mainView2.src.endsWith('menu-blue.png')){
-        mainView2.src = "../Images/menu-blue.png";
+        mainView2.src = "../../assets/menu-blue.png";
           
     } else {
-        mainView2.src = "../Images/menu-blue.png";
+        mainView2.src = "../../assets/menu-blue.png";
         document.getElementsByClassName("main__imagesContainer")[0].style.cssText ="grid-template-columns: repeat(auto-fit(3fr));grid-gap:29px;";
         document.getElementsByClassName("main__picBtns")[0].style.cssText ="min-width:429px;";
 
@@ -97,8 +96,8 @@ function changeImage2() {
         applyStyles(searchText,"display:none");
         applyStyles(searchDescr,"display:none");
   
-        document.getElementById("main__View1").src="../Images/grid.png";
-        document.getElementById("main__View3").src="../Images/list.png";
+        document.getElementById("main__View1").src="../../assets/grid.png";
+        document.getElementById("main__View3").src="../../assets/list.png";
     }
     
     changePageNum();
@@ -117,10 +116,10 @@ function changeImage3(){
     const mainView3 =document.getElementById("main__View3");
 
     if (mainView3.src.endsWith('list-blue.png')){
-        mainView3.src = "../Images/list-blue.png";
+        mainView3.src = "../../assets/list-blue.png";
 
 } else {
-        mainView3.src = "../Images/list-blue.png";
+        mainView3.src = "../../assets/list-blue.png";
         document.getElementsByClassName("main__imagesContainer")[0].style.cssText ="grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));grid-gap:29px;";
         document.getElementsByClassName("main__picBtns")[0].style.cssText ="min-width:93px;max-height:70px";
 
@@ -134,8 +133,8 @@ function changeImage3(){
         applyStyles(searchText,"display:flex;justify-content:flex-start;border:none");
         applyStyles(searchDescr,"display:flex");
 
-        document.getElementById("main__View1").src="../Images/grid.png";
-        document.getElementById("main__View2").src="../Images/menu.png";
+        document.getElementById("main__View1").src="../../assets/grid.png";
+        document.getElementById("main__View2").src="../../assets/menu.png";
 }
 
 changePageNum();
@@ -213,7 +212,6 @@ function changePageNum(){
 changePageNum();
 
 // On click of button " + " add new Element calling createListItem(), and check if pagination is neccesery with changePageNum();
-const singImgContbp = document.querySelector('.mainContainer').innerHTML; 
 const addItemBtn = document.querySelector('.add-item');
 //adding new Item 
 function addingNewItem(){
@@ -240,7 +238,7 @@ function deleteListItem(){
 }
 deleteListItem();
 
-//Creating input comment on button click, for every card
+//Creating input comment on button click, for every card //api here is empty for now
 function createComment(){
         const container = document.querySelector('.main__imagesContainer');
         let arrayOfitems = Array.from(container.children);
@@ -315,16 +313,6 @@ const disabledBtn = (targetIndex, numCount) =>{
         })
     }
 }
-// function compare(numbers,numbers2){
-//     let combinedArray = [];
-//     numbers.forEach((e1) => numbers2.forEach((e2) =>{
-//         console.log(e1.textContent === e2.textContent)
-//         if(e1.textContent === e2.textContent){
-//             combinedArray.push(e1);
-//         }
-//     }));
-//     console.log(combinedArray)
-// }
 
 function changingPage(){
  // On each of the Previous buttons clicked, change page;button availability
@@ -346,6 +334,7 @@ function changingPage(){
 
         });
     })
+
     // On each of the Next buttons clicked, change page;button availability
     pageNextBtn.forEach(pageNextBtn =>{
         pageNextBtn.addEventListener('click', () =>{

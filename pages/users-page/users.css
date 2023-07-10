@@ -1,8 +1,4 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+
 body{
     background-color:var(--lightGray);
     z-index:-1;
@@ -67,7 +63,7 @@ gap:10px;
     color:var(--tableTxt);
 }
 .main__korisnici--ograničenje{
-text-align: center;
+
 }
 .main__tableHeader > tr > th{
     min-height:50px;

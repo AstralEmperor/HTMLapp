@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../CSS/opservations.css" rel="stylesheet">
-    <link href="../CSS/root.css" rel="stylesheet">
-    <link href="../CSS/zahtevi.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../shared/style.css" rel="stylesheet">
+    <link href="./request.css" rel="stylesheet">
+    <link href=".././opservations/opservations.css" rel="stylesheet">
+    <link href="../../shared/mquery/mediaq.css">
     <title>Opservacije</title>
 </head>
 <body>
   <nav class="nav">
-    <img class="nav__icon" src="../Images/Icon.png" alt="Bs-icon.png">
+    <img class="nav__icon" src="../../assets/Icon.png" alt="Bs-icon.png">
     <div class="nav__links inactive">
     <div class="nav__group1">
   <ul class="nav__ul">
-      <li class="nav__li"><a class="nav__link tertiaryBtn" href="./opservations.html">Opservatori</a><button aria-expanded ="false" class="nav__link-button material-icons disabled">expand_more</button></li>
+      <li class="nav__li"><a class="nav__link tertiaryBtn" href="../opservations/opservations.html">Opservatori</a><button aria-expanded ="false" class="nav__link-button material-icons disabled">expand_more</button></li>
       <li class="nav__li"><a class="nav__link tertiaryBtn" href="#/">Lokacije</a><button aria-expanded ="false" class="nav__link-button material-icons disabled">expand_more</button></li>
-      <li class="nav__li"><a class="nav__link tertiaryBtn" href="./zahtevi.html">Zahtevi</a><button aria-expanded ="false" class="nav__link-button material-icons disabled">expand_more</button></li>
-      <li class="nav__li--special"><div class="nav__li nav__li--Container"><a class="nav__link tertiaryBtn" href="./korisnici.html">Korisnici</a><button aria-expanded ="false" class="nav__link-button material-icons">expand_more</button></div>
+      <li class="nav__li"><a class="nav__link tertiaryBtn" href="../request-page/request.html">Zahtevi</a><button aria-expanded ="false" class="nav__link-button material-icons disabled">expand_more</button></li>
+      <li class="nav__li--special"><div class="nav__li nav__li--Container"><a class="nav__link tertiaryBtn" href="../users-page/users.html">Korisnici</a><button aria-expanded ="false" class="nav__link-button material-icons">expand_more</button></div>
           <ul class="nav__second">
-            <li class="nav__li"><a class="nav__link tertiaryBtn" href="./dnevnikAktivnosti.html">Dnevnik aktivnosti</a>
+            <li class="nav__li"><a class="nav__link tertiaryBtn" href="../activityDiary/activity.html">Dnevnik aktivnosti</a>
           </li>
          </ul>
         </li>
@@ -32,7 +33,7 @@
   <div id ="nav__user" class="nav__li nav__user">BSC Admin<button aria-expanded ="false" class="nav__link-button material-icons">expand_more</button>
   </div>
     <ul class="nav__second nav__second--type2">
-      <li class="nav__li"><a class="nav__link tertiaryBtn" href ="./login.html">Log-out</a></li>
+      <li class="nav__li"><a class="nav__link tertiaryBtn" href ="../login/login.html">Log-out</a></li>
     </ul>
 </div>
 </div>
@@ -129,7 +130,8 @@
     </div>
   </div>
     </section>
-    <script src="../JS/secondaryNav.js"></script>
-    <script src="../JS/displayInfoZahtevi.js"></script>
+    <script src="../../shared/mquery/secondaryNav.js"></script>
+    <script src="./request.js" type="module"></script>
+    <script src="../../shared/mquery/navigation.js"></script>
 </body>
 </html>
