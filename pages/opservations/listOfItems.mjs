@@ -176,6 +176,8 @@ function changePageNum(){
     for(let i = 0; i < numCont.length; i++){
         const currentNumPages = numCont[i].children.length;
 
+        btnSupport(totalPages,currentNumPages)
+
         //if there is more elements then current pages can fit, clone the last number and add + 1 to its textContent value
         if(currentNumPages < totalPages){
             for(let j = currentNumPages + 1; j <= totalPages; j++){
@@ -191,25 +193,32 @@ function changePageNum(){
             }
         }
     }
-    //If there is only 1 page, disable buttons
-    if(totalPages <= 1){
-        pageNextBtn.forEach((pageNextButton) =>{
-            pageNextButton.classList.add('disabled');
-        })
-    }else if(totalPages > 1){
-        pageNextBtn.forEach((pageNextButton) =>{
-            pageNextButton.classList.remove('disabled');
-        })
-    }
+
       //Changing visibility of items based on page number
-      for(let i = 0; i < arrayOfPosts.length;i++){
+      for(let i = 0; i < arrayOfPosts.length; i++){
         arrayOfPosts[i].style.display = "none";
         if(start <= i && end > i){
             pageElements[i - start].style.display = "flex";
         }
    }
+   
+   return totalPages;
  }
 changePageNum();
+
+//If there is only 1 page, disables button next & enables it if there is more elements then current page can fit (check changePageNum() function)
+function btnSupport(totalPages,currentNumPages){
+    pageNextBtn.forEach((pageNextButton) =>{
+        if(totalPages <= 1){
+            pageNextButton.classList.add('disabled');
+            console.log('1 page')
+        }
+    else if(totalPages > 1 && currentNumPages < totalPages){
+        console.log('more than 1')
+            pageNextButton.classList.remove('disabled');        
+        }
+    })
+}
 
 // On click of button " + " add new Element calling createListItem(), and check if pagination is neccesery with changePageNum();
 const addItemBtn = document.querySelector('.add-item');
@@ -228,12 +237,12 @@ function deleteListItem(){
     const singleCont = document.querySelectorAll(".main__singleImgContainer");
     for(let i = 0; i < singleCont.length; i++){
         const deleteBtn = singleCont[i].querySelector('.main__deleteImg');
-        deleteBtn.addEventListener('click', () =>{
-            setTimeout(()=>{
-                singleCont[i].remove();
-                changePageNum();
-            },100)
-        })
+            deleteBtn.addEventListener('click', () =>{
+                setTimeout(()=>{
+                    singleCont[i].remove();
+                    changePageNum();
+                },100)
+            })
     }
 }
 deleteListItem();
@@ -353,7 +362,5 @@ function changingPage(){
             disabledBtn(nextIndex, numCount);
         });
     })
-    return currentPageNum;
  }
 changingPage();
-

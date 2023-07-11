@@ -62,9 +62,7 @@ gap:10px;
     border-spacing:0;
     color:var(--tableTxt);
 }
-.main__korisnici--ograničenje{
 
-}
 .main__tableHeader > tr > th{
     min-height:50px;
     padding:20px 0;

@@ -1,4 +1,4 @@
-import { getData } from "../../server/api-folder/api.js";
+import { getData } from "../../../BackEnd/server/api-folder/api.js";
 console.log(getData)
 getData().then(loginInfo => {
   loginInfo;

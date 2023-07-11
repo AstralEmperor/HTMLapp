@@ -1,4 +1,4 @@
-import  { getKorisnici }  from "../../server/api-folder/api.js";
+import  { getKorisnici }  from "../../../BackEnd/server/api-folder/api.js";
 // async await funkcija poziva podataka iz JSON-a
 
 // updates number of items constantly, at the bottom of the page

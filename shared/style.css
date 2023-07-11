@@ -220,7 +220,11 @@ color:var(--textGray);
     border-radius:20px;
 }
 .disabled{
-    opacity:0.2;
+    opacity:0.4;
+    pointer-events:none;
+}
+.disabled2{
+    opacity:0;
     pointer-events:none;
 }
 /* @media (prefers-color-scheme: dark){

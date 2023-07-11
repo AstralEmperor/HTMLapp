@@ -1,4 +1,4 @@
-import { requests } from "../../server/api-folder/api.js";
+import { requests } from "../../../BackEnd/server/api-folder/api.js";
 const requestBody = document.querySelector('.zahtevi__body');
 
 // fetches json data, and then uses it to write up a table
