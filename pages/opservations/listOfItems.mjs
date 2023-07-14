@@ -5,6 +5,11 @@ const specialContainer = document.querySelector('.man__singleImgContainer--speci
 
 const pagePrevBtn = document.querySelectorAll('.main__pageBtnPrev');
 const pageNextBtn = document.querySelectorAll('.main__pageBtnNext');
+
+window.addEventListener('load', () => {
+    toastr.success("Login Succesful!")
+},{once:true})
+
 // Function for cloning 'first' original item 
 function listTemplate(){
     let copySingleCont = singleContainer.cloneNode(true); 
@@ -26,7 +31,6 @@ const applyStyles = (elements, styles) =>{
         elements[i].style.cssText = styles;
     }
 };
-
 //3 functions for View changing on button Press. 
 function changeImage1() {
     const description = document.querySelectorAll('.main__description');

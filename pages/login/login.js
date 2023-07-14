@@ -1,5 +1,5 @@
 import { getData } from "../../../BackEnd/server/api-folder/api.js";
-console.log(getData)
+
 getData().then(loginInfo => {
   loginInfo;
   const loginForm = document.querySelector('.login');
@@ -11,12 +11,12 @@ getData().then(loginInfo => {
     
   for(let i = 0; i < loginInfo.length; i++){
       if(loginName === loginInfo[i].names && loginEmail === loginInfo[i].email && loginPw === loginInfo[i].password){
-
         window.location = '../opservations/opservations.html';
         return true;
         
       }else if(i === loginInfo.length - 1){
           document.querySelector('.login__wrong').style.display ="flex";
+          toastr.error("Account not found!")
           return false;
       }
   }
