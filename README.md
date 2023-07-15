@@ -26,4 +26,4 @@ This app is used for posting, commenting and deleting items. Reaching for databa
     8. Tables displaying content from JSON
     9. Toastr notifications on login(npm package)
 
-## NO WAY TO LAUNCH IT AT THE MOMENT!!!
+# MOVED TO -APPLICATION- DUE TO SOME GIT ISSUES AFTER RESTRUCTURING
